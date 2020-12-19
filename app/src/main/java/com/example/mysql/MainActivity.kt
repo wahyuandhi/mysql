@@ -3,57 +3,62 @@ package com.example.mysql
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
-
+import com.example.mysql.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.net.URL
-
 
 class MainActivity : AppCompatActivity() {
 
-
-
-
-
-    lateinit var editText_id: EditText
-    lateinit var editText_nama: EditText
-    lateinit var editText_alamat: EditText
-
-
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
-        editText_id = findViewById(R.id.editText_ID)
-        editText_nama = findViewById(R.id.editText_nama)
-        editText_alamat =findViewById(R.id.editText_alamat)
-
-        textView_hasil.setText("welcome")
+        binding.textViewHasil.setText("welcome")
     }
 
     fun button_read(view: View) {
+        GlobalScope.async {
+            var id: String = binding.editTextID.text.toString()
+
+            var alamat = "ip-server/simple/getId.php?id=$id"
+            var hasil: String = getJsonFromURL(alamat).toString()
+            binding.textViewHasil.setText(hasil)
+        }
     }
 
     fun button_insert(view: View) {
+        var nama:String = binding.editTextNama.text.toString()
+        var alamat:String = binding.editTextAlamat.text.toString()
+
+        GlobalScope.launch {
+            URL("ip-server/simple/insert.php?nama=$nama&alamat=$alamat").openStream()
+        }
     }
 
     fun button_update(view: View) {
+        var id: String = binding.editTextID.text.toString()
+        var nama: String = binding.editTextNama.text.toString()
+        var alamat: String = binding.editTextAlamat.text.toString()
 
-        // isi update untuk tugas
+        GlobalScope.launch {
+            URL("ip-server/simple/update.php?id=$id&nama=$nama&alamat=$alamat").openStream()
+        }
     }
+
     fun button_delete(view: View) {
-
-
-
+        var id:String = binding.editTextID.text.toString()
+        GlobalScope.launch {
+            URL("ip-server/simple/delete.php?id=$id").openStream()
+        }
     }
 
-
-
-
+    fun getJsonFromURL(wantedURL: String) : String {
+        return URL(wantedURL).readText()
+    }
 }
-
-

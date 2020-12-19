@@ -14,6 +14,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,54 +23,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@string/ID"
-            android:importantForAutofill="no" />
+            android:text="@string/ID" />
 
         <EditText
             android:id="@+id/editText_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@string/nama"
-            android:importantForAutofill="no" />
+            android:text="@string/nama" />
 
         <EditText
             android:id="@+id/editText_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@string/alamat"
-            android:importantForAutofill="no" />
+            android:text="@string/alamat" />
 
         <Button
-            android:onClick="button_read"
             android:id="@+id/button_read"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="button_read"
             android:text="@string/read" />
 
         <Button
-            android:onClick="button_insert"
             android:id="@+id/button_insert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="button_insert"
             android:text="@string/insert" />
 
         <Button
-            android:onClick="button_update"
             android:id="@+id/button_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="button_update"
             android:text="@string/update" />
 
         <Button
-            android:onClick="button_delete"
             android:id="@+id/button_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="button_delete"
             android:text="@string/delete" />
 
         <TextView
